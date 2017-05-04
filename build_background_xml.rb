@@ -1,5 +1,10 @@
+#!/usr/bin/ruby
+
+
 ROOTOPEN = "<background>";
 ROOTCLOSE = "</background>";
+DURTIME = 300.0;
+TRANSTIME = 5.0;
 
 def addStartTime(year, month, day, hour, minute, second)
   starttime =
@@ -36,7 +41,7 @@ def writeXML(thedoc)
   
   puts "Writing XML file to: #{Dir.getwd()}/"
   
-  File.open("test.xml",'w'){ |file|
+  File.open("myBackgrounds.xml",'w'){ |file|
     file.write(thedoc);
   }
 end
@@ -64,9 +69,9 @@ begin
 #  puts theXMLdoc;
   fileNames.each_with_index {|fileName, index|
 #    puts fileName;
-    theXMLdoc += addStatic(300.0,fileName);
+    theXMLdoc += addStatic(DURTIME,fileName);
     theXMLdoc += "\n";
-    theXMLdoc += addTransition(5.0, fileName, fileNames[index+1]);
+    theXMLdoc += addTransition(TRANSTIME, fileName, fileNames[index+1]);
     theXMLdoc += "\n";
   }
   
