@@ -34,7 +34,7 @@ end
 
 def writeXML(thedoc)
   
-  puts "Writing XML file to: #{Dir.getwd()} "
+  puts "Writing XML file to: #{Dir.getwd()}/"
   
   File.open("test.xml",'w'){ |file|
     file.write(thedoc);
@@ -62,9 +62,11 @@ begin
   theXMLdoc += "\n";
   
 #  puts theXMLdoc;
-  fileNames.each {|fileName|
+  fileNames.each_with_index {|fileName, index|
 #    puts fileName;
     theXMLdoc += addStatic(300.0,fileName);
+    theXMLdoc += "\n";
+    theXMLdoc += addTransition(5.0, fileName, fileNames[index+1]);
     theXMLdoc += "\n";
   }
   
